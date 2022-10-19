@@ -21,7 +21,7 @@ router.get('/' , (req , res)=>{
         .status(200)
         .json({
             "success" : true,
-            "data": "Aqui van a salir todos los Bootcamps"
+            "data": "Aqui van a salir todos los Courses"
         })
 })
 
@@ -31,7 +31,7 @@ router.get('/:id' , (req , res)=>{
         .status(200)
         .json({
             "success" : true,
-            "data": `Aqui va a salir el Bootcamp cuyo Id es ${req.params.id}`
+            "data": `Aqui va a salir el Course cuyo Id es ${req.params.id}`
         })
 })
 
@@ -42,7 +42,7 @@ router.put('/:id' , (req , res)=>{
         .status(200)
         .json({
             "success" : true,
-            "data": `Aqui va actualizarse el Bootcamp cuyo Id es ${req.params.id}`
+            "data": `Aqui va actualizarse el Course cuyo Id es ${req.params.id}`
         })
 })
 
@@ -53,7 +53,7 @@ router.delete('/:id' , (req , res)=>{
         .status(200)
         .json({
             "success" : true,
-            "data": `Aqui va borrarse el Bootcamp cuyo Id es ${req.params.id}`
+            "data": `Aqui va borrarse el Course cuyo Id es ${req.params.id}`
         })
 })
 
