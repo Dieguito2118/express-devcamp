@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class courses extends Model {
+  class Courses extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,14 +13,63 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  courses.init({
-    title: DataTypes.STRING,
-    description: DataTypes.STRING,
-    week: DataTypes.INTEGER,
-    enroll_cost: DataTypes.FLOAT
+  Courses.init({
+    title:{ 
+      type:DataTypes.STRING,
+      allowNull: false,
+      validate:{
+        notNull : {
+          args: true, 
+          msg:'title debe estar presente'
+        },
+        notEmpty: {
+          args: true, 
+          msg:'title no debe ser vacio'
+        },
+        unique(value) {
+    
+          return Courses.findOne({where:{title:value}})
+            .then((title) => {
+              if (title) {
+                throw new Error('Error hay mas de un nombre asi');
+              }
+            })
+        },
+      }
+    },
+    description:{ 
+      type:DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        notNull: {
+          args: true,
+          msg: "Descripcion no debe ser vacia"
+        }
+      },
+    },
+    week:{ 
+      type:DataTypes.INTEGER,
+      validate:{
+        notEmpty:{
+          args:true,
+          msg:'Weeks no debe ser vacio'
+        },
+       }
+    },
+    enroll_cost:{ 
+      type:DataTypes.FLOAT,
+      validate:{
+        notEmpty:{
+          args:true,
+          msg:'enroll_cost no debe ser vacio'
+        },
+       }
+    },
   }, {
     sequelize,
-    modelName: 'courses',
+    modelName: 'Course',
+    timestamps: false
   });
-  return courses;
+ 
+  return Courses;
 };

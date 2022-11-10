@@ -12,6 +12,8 @@ const bootcampRoutes = require('./routes/BootcampRoutes')
 const coursesRoutes = require('./routes/CourseRoutes')
 //Los componentes de ruta
 const userRoutes = require('./routes/UserRoutes')
+//Los componentes de ruta
+const reviewsRoutes = require('./routes/ReviewsRoutes')
 
 //3.Establecer archivo de configuracion
 dotenv.config({
@@ -33,16 +35,9 @@ connectDB()
 app.use('/api/v1/bootcamps' , bootcampRoutes)
 app.use('/api/v1/courses' , coursesRoutes)
 app.use('/api/v1/users' , userRoutes)
+app.use('/api/v1/reviews' , reviewsRoutes)
 
-//Endpoint de Aplicacion
-app.get('/'  , (request , response )=>{
-    response
-        .status(200)
-        .json({
-            "sucess": true,
-            "data" : "Request  Exitosa"
-        })
-})
+
 
 //Endpoints de Dominio
 //Bootcamps
